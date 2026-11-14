@@ -1,0 +1,114 @@
+# review-to-the-bar
+
+A [Claude Code](https://claude.com/claude-code) skill that reviews a pull request before a human
+reviewer spends time on it.
+
+It starts where most reviews end: with the code a developer has to write to use the change. If a
+sample app needs hundreds of lines to use one feature, that is the finding, and nothing further
+down the diff matters as much.
+
+## What it does
+
+1. **Triage and pin** the pull request to an exact commit.
+2. **Name the three sources**: the repository's rules, the spec, and whatever calls the change.
+3. **Measure the sample app first.** It writes the smallest correct code each kind of developer
+   needs and counts the lines. Over one screen, or needing explanation, is the first finding.
+4. **Run the lenses the diff calls for**: standards, spec, developer experience.
+5. **Check the pull request's own claims** ("tested", "verified") against something that can be
+   re-run.
+6. **Validate every finding against the code.** A finding survives only with a quoted line or a
+   command that reproduces it.
+7. **Write the review**, most costly first, each comment labelled as an issue, a suggestion, a
+   question or a nit.
+8. **Hand it to a person.** Nothing is posted without their word.
+
+It is read-only. It does not build or run a pull request's code unless you tell it to, and it
+never approves or blocks.
+
+## Install
+
+In Claude Code:
+
+```
+/plugin marketplace add openmobilehub/review-to-the-bar
+/plugin install review-to-the-bar@review-to-the-bar
+```
+
+Choose the **user** scope so the skill is available in every repository you work in. From a shell:
+
+```sh
+claude plugin marketplace add openmobilehub/review-to-the-bar
+claude plugin install review-to-the-bar@review-to-the-bar --scope user
+```
+
+To update later:
+
+```sh
+claude plugin marketplace update review-to-the-bar
+claude plugin update review-to-the-bar@review-to-the-bar
+```
+
+Without plugins: copy `skills/review-to-the-bar/` to `~/.claude/skills/review-to-the-bar/`.
+
+## Use
+
+Ask Claude Code, in any checkout:
+
+> Review https://github.com/owner/repo/pull/123 to the bar.
+
+or call it by name with `/review-to-the-bar:review-to-the-bar`.
+
+Two ways to use it:
+
+- **Before you ask for review.** Run it on your own pull request, fix what it finds, and put the
+  sample-app snippet, the findings, and what you did not verify in the description.
+- **To check someone else's.** It produces a short review body and comments on the changed lines
+  for you to approve, edit or discard.
+
+## The bar
+
+The skill reads three layers of rules, from the base branch:
+
+1. the target repository's own contribution, style and review files;
+2. your project's rules when they live in another repository (tell it where);
+3. the default in [`skills/review-to-the-bar/BAR.md`](skills/review-to-the-bar/BAR.md), five
+   short rules that always apply.
+
+To change what it holds a change to, change those files, not the skill.
+
+## What is in the repository
+
+| Path | What it is |
+| :-- | :-- |
+| `skills/review-to-the-bar/SKILL.md` | The eight steps. |
+| `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
+| `skills/review-to-the-bar/BAR.md` | The default bar. |
+| `.claude-plugin/` | The plugin and marketplace manifests. |
+
+## Where the ideas come from
+
+Measuring the sample app first is this skill's own. The rest stands on other people's work:
+
+- Reviewing standards and spec as separate lenses, so one cannot mask the other:
+  [Matt Pocock's `code-review` skill](https://github.com/mattpocock/skills).
+- Validating each finding against the code, and the list of things to leave out:
+  [Anthropic's `code-review` plugin](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review)
+  and [Claude Code Review](https://code.claude.com/docs/en/code-review).
+- Saying what a reviewer declined to judge, and matching each claim to its evidence:
+  [obra/superpowers](https://github.com/obra/superpowers).
+- Design first, small changes, and tests that fail when the code breaks:
+  [Google's Engineering Practices](https://google.github.io/eng-practices/review/).
+- The comment labels: [Conventional Comments](https://conventionalcomments.org/).
+- "Deliver code you have proven to work":
+  [Simon Willison](https://simonwillison.net/2025/Dec/18/code-proven-to-work/).
+
+## Contributing
+
+Issues and pull requests are welcome. Sign off every commit (`git commit -s`), as in the other
+[Open Mobile Hub](https://openmobilehub.org) repositories. A change to the steps or the briefs
+should say what review it made better: the pull request it was tried on, and what it caught or
+stopped flagging.
+
+## License
+
+[Apache-2.0](LICENSE).

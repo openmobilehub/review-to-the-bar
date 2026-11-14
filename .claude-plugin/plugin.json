@@ -1,0 +1,9 @@
+{
+  "name": "review-to-the-bar",
+  "version": "0.1.0",
+  "description": "Review a pull request before a human reviewer spends time on it: sample app measured first, then standards, spec, developer experience and a skeptic.",
+  "author": { "name": "Open Mobile Hub" },
+  "homepage": "https://github.com/openmobilehub/review-to-the-bar",
+  "repository": "https://github.com/openmobilehub/review-to-the-bar",
+  "license": "Apache-2.0"
+}
