@@ -18,8 +18,11 @@ Every comment carries one.
     or the public documentation, is false or cannot be re-run, and a reviewer
     would rely on it. A wrong sentence in a code comment is a suggestion.
 
-  A shipped path has to reach it: a problem in code nothing can call is a
-  suggestion. A call a developer can make through the public API is a path.
+  A shipped path has to reach it: a problem in code nothing can call, or that
+  no shipped type reaches, is a suggestion. A call a developer can make through
+  the public API is a path. A trace you could not run is a question until a
+  validator confirms it from the code. A doc comment on a declaration is a code
+  comment. Label each finding by itself, also inside a grouped comment.
   A stacked PR that fixes a blocking item changes the request ("land #N with
   this, or first"), not the label; the finding is still stated. Where the
   repository's rules grade severity, use theirs.
@@ -50,9 +53,10 @@ A review is read by a busy person. What you post is a selection, not the
 record.
 
 - When the target repository has its own review format or limits, use them.
-- Otherwise: one comment per root cause, and about seven line comments. The
-  cap applies after every blocking item has a comment; group those by function
-  when there are many. Documentation fixes share one comment.
+- Otherwise: one comment per blocking root cause, about 120 words each, with
+  the simplest change that fixes it. Then up to five non-blocking comments,
+  the target repository's "must" rules first. Documentation fixes share one
+  comment.
 - Everything else that is true goes in an **Also noticed** list for the person
   at hand-over, with the pre-existing problems, what was declined and what was
   dropped. They decide whether any of it is sent. When that list is not empty,
@@ -82,11 +86,14 @@ Short: about 200 to 300 words, plus code.
    words.
 2. The sample-app measurement: the snippet, its line count, the real caller's,
    and the code they should be able to write when that differs. When it is past
-   one screen, say so as the verdict's first sentence and make it the first
-   item of **Before merge**. For a change that is already right, one sentence.
-3. **Before merge**: the blocking items, at most five. Group related ones into
-   one item. More than five distinct blockers means the change needs reshaping
-   first; say that in place of a longer list.
+   one screen, say so as the verdict's first sentence ("the API is not
+   finished"), give both numbers, the minimum and what the real caller wrote,
+   and make it the first item of **Before merge**. For a change that is
+   already right, one sentence.
+3. **Before merge**: the blocking items, always listed, at most five. Group
+   related ones into one item that points at their comments. When the change
+   also needs splitting or reshaping, say so in one sentence beside the list,
+   never in place of it.
 4. One line pointing at the non-blocking comments, with their count.
 5. **Scope**, when there is something to say: unrelated changes, size, what
    belongs in another PR.
