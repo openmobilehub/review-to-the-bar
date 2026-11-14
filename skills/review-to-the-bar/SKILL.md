@@ -156,9 +156,10 @@ wherever the code lives.
    and comments on the changed lines, ending with the scorecard
    ([`SCORECARD.md`](SCORECARD.md)): six scores from the validated findings,
    and an overall score that is the lowest gate. Have one validator check the
-   scores and the labels together before hand-over. For your own: fix what you found, then put
-   the cold-read packet, the findings, and what you did not verify at the top
-   of the PR description.
+   scores and the labels together before hand-over. For your own: fix what you found, then give
+   your reviewer the cold-read packet, the scorecard, the findings, and what
+   you did not verify: in the PR description in your own team's repository,
+   privately in someone else's.
 
 9. **Hand it over.** Show the person the review as it would be sent, the
    scorecard first, with
