@@ -1,7 +1,9 @@
 # The default bar
 
-The minimum every review holds a change to. A project's own rules add to it;
-where a project rule is stricter, the project rule wins.
+The minimum every review holds a change to. A repository's own rules add to it;
+where one of them is stricter, that rule wins there. How a project's rules
+apply in someone else's repository is settled in [`SKILL.md`](SKILL.md), "The
+bar".
 
 ## 1. The sample app is the measurement
 
@@ -18,6 +20,8 @@ the API.
   wants its own.
 - Things that must be done together are one call, or the library refuses when
   half is missing.
+- A new feature ships with a usage example in its docs and a sample app that
+  shows it working. A feature nobody can try is not finished.
 
 ## 2. What is shown is what is signed and enforced
 
@@ -27,6 +31,10 @@ Where a person approves something that is then signed or enforced:
 - each value the other side enforces (an id, an amount, a date, a key) is shown,
   and not only its friendly name;
 - a value that cannot be parsed or displayed is a refusal, never an omission.
+
+This holds for a preview or summary of an approval as much as for the screen
+where the approval is given: a summary may leave detail to a second screen, but
+what it does say is true, and it says when something is left out.
 
 ## 3. Claims can be re-run
 
