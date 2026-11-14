@@ -17,13 +17,21 @@ whether the change merges; this skill never approves or merges.
 Settle these two before step 1; they change what you produce.
 
 - **Whose change.** *Your own* when the PR's author is the account you run as,
-  or the person says so. Otherwise *someone else's*. A teammate's PR in another
-  project's repository is someone else's, and its review goes to the author
-  privately unless the person says to post it.
+  or the person says so. Otherwise *someone else's*.
+- **A teammate's PR in someone else's repository has two outputs, in separate
+  steps.** First **the review to the author**: private, held to the full bar.
+  This is what the steps below produce. Then, only when the person asks, **the
+  upstream draft** ([`WRITING.md`](WRITING.md), "The upstream draft"). Never
+  lower a label in the first because of what the second can cite.
 - **How big.** Count changed lines of source, leaving out tests, docs, lockfiles
-  and generated files.
-  - **Small**, under about 100: one reviewer runs every brief that applies, in
-    turn, and one validator takes all the findings.
+  and generated files. For a PR stacked on another open PR, count and review
+  only its own commits; a problem in the lower PR's code that this one first
+  puts in front of a person or a developer is a finding here, and the rest go
+  to the hand-over for the lower PR's review.
+  - **Small**, under about 100: you are the one reviewer. Run every brief that
+    applies yourself, in turn, then give one fresh validator your findings,
+    your step 3 measurement and your "clean" statements. Post the blocking
+    items and at most three others.
   - **Medium**, about 100 to 1,000: one subagent per lens; validators as in
     step 6.
   - **Large**, over about 1,000, or several purposes in one change: "split
@@ -39,10 +47,12 @@ to. List the spec edits as decisions the change makes.
    agent-instruction files. These govern form, compatibility and severity
    there.
 2. **The project's bar, when the work belongs to a project whose rules live
-   elsewhere.** Ask the person, or read their instructions, for where it is. In
-   someone else's repository, a rule that only your project's bar holds is
-   reported to your own team; posted there, it is a suggestion at most.
+   elsewhere.** Ask the person, or read their instructions, for where it is.
 3. **[`BAR.md`](BAR.md)**, the default: the minimum that always applies.
+
+Every layer decides the verdict in the review to the author. `BAR.md` is this
+skill's minimum, not "your project's bar": a finding under it keeps its label
+wherever the code lives.
 
 ## Steps
 
@@ -62,9 +72,10 @@ to. List the spec edits as decisions the change makes.
      is one.
    - **Caller** — whatever uses the change: a sample app, a dependent PR, the
      other side of a protocol, and any open PR stacked on this one or by the
-     same author on the same issue (diff and description only). Pin each
-     caller to a commit as well; a caller that moves under the review hides
-     what it really had to write.
+     same author on the same issue. Read each one's diff and description now,
+     and write one line per PR saying what it adds. Pin each caller to a
+     commit as well; a caller that moves under the review hides what it really
+     had to write.
 
    Write these, the pin, the diff command, the PR title, description and commit
    message, and every limit the person set, into **one context file**. Every
@@ -72,14 +83,19 @@ to. List the spec edits as decisions the change makes.
 
 3. **Measure the sample app.** Read only what a caller sees: public signatures,
    docs, the README, an existing sample. For each kind of developer the change
-   touches, write the smallest correct code they need today and count the lines
+   touches, write the smallest correct code they need today, starting from an
+   app on the library's defaults, and count the lines
    as a sample app would format them; for a developer who writes nothing new,
    one sentence saying so. Beside each minimal snippet, give the number of
    lines the real caller wrote at its pinned commit; when the two differ, the
    larger is what developers will copy. For a fix, measure before and after.
-   Say the snippets are uncompiled when you could not build. Over one screen, or needing
-   explanation, is the first finding (`BAR.md` §1). Add the snippets to the
-   context file; the developer-experience lens will correct them.
+   Say the snippets are uncompiled when you could not build. Then trace each
+   sample to the screen: as the sample app ships, with its default settings,
+   what does a person see, and what happens when each statement of the snippet
+   is left out? Over one screen, or needing explanation, is the first finding
+   (`BAR.md` §1), measured on the larger of the snippet and the real caller.
+   Add the snippets to the context file; the developer-experience lens will
+   correct them.
    *Done when* each developer has a snippet with a line count, or a sentence.
 
    **Stop only when the shape is wrong:** fixing it would discard most of the
@@ -88,7 +104,8 @@ to. List the spec edits as decisions the change makes.
    continue.
 
 4. **The cold read**, when the change has something a developer uses. Follow
-   [`HUMAN-BAR.md`](HUMAN-BAR.md): record your own score first; then, for
+   [`HUMAN-BAR.md`](HUMAN-BAR.md): record your own score now, before any lens
+   runs; then, for
    someone else's change, show the person only the docs and the snippets and
    ask the three questions and one score. **Below 4, stop**: the change goes
    back with their words on what was unclear. For your own change, prepare the
@@ -100,19 +117,25 @@ to. List the spec edits as decisions the change makes.
    always, against the description when there is no spec; **developer
    experience** when a public surface, a sample, a user-facing screen, or an
    error a caller can receive changed. Each subagent has fresh context, reads
-   the context file, writes its report to a file you name, and replies with the
-   path.
+   the context file, and writes its report to a file you name. The file is the
+   signal: a report is finished when its last line is `END OF REPORT`. A
+   subagent's reply may never arrive, so look for the files.
    *Done when* each lens has reported findings, what it read, what it found
    clean, and what it declined to judge.
 
 6. **Check the PR's own claims yourself, while the lenses run.** List every
    "tested", "verified", "passes" and "fixes" in the description, the commit
    message and the issue, each beside the test, script or CI job that shows it.
-   A claim with nothing behind it is a finding (`BAR.md` §3). For each new
+   A claim with nothing behind it is a finding (`BAR.md` §3), and it is posted,
+   never left to the hand-over. "Fixes #N" is true only when the change does
+   what that issue asks for; otherwise ask for "Part of #N". For each new
    control, name the test that fails if that line is removed; when you cannot
    run it, trace it and say it is a trace.
 
-7. **Validate against the code.** Merge duplicates across lenses first. Up to
+7. **Validate against the code.** First collect: besides each lens's findings,
+   its public-surface rows marked "make internal" or "reshape", its "never
+   asked for" list and its "has to know" list are candidate findings. Merge
+   duplicates across lenses. Up to
    about eight findings, one fresh validator each; beyond that, group by area,
    five to ten to a validator. Validators also get your own findings from steps
    3 and 6, and each "clean" statement the review relies on. A finding survives
@@ -123,12 +146,18 @@ to. List the spec edits as decisions the change makes.
    label it, or send it as a question. An area no lens or validator covered
    gets one more pass. Then stop.
 
+   Keep a **ledger**: every finding, and every point a validator confirmed or
+   said was missed, gets exactly one destination: a comment, the body, Also
+   noticed, pre-existing, or dropped with the reason. Before step 9 the counts
+   add up.
+
 8. **Write the review**, following [`WRITING.md`](WRITING.md) for labels, order,
    where each comment goes, and length. For someone else's change: a short body
    and comments on the changed lines. For your own: fix what you found, then put
    the cold-read packet, the findings, and what you did not verify at the top
    of the PR description.
 
-9. **Hand it over.** Show the person the review as it would be posted, with
-   both cold-read scores, what was not verified, and what was declined. Post
-   only on their word. If they asked for files, write the review there.
+9. **Hand it over.** Show the person the review as it would be sent, with
+   both cold-read scores, what was not verified, what was declined, and the
+   ledger's counts. Send or post only on their word. If they asked for files,
+   write the review there.

@@ -16,6 +16,12 @@ step 3. No findings, no diff, no summary of yours, so their judgement is their
 own. It should take two or three minutes. If it takes longer, that is already an
 answer.
 
+The packet is the repository's words, not yours. Copy the docs as they stand at
+the commit; where there are none, say so and copy the doc comment a developer
+would find. Show the code the docs and the sample app give. A step the docs
+leave out stays out of the packet, and you add no comments saying where code
+goes: finding that out is what the read measures.
+
 Ask three questions, in these words:
 
 1. **What is this for?** Say the use case in one sentence.
@@ -39,8 +45,8 @@ with the person's own words on what was unclear as the first item of the review.
 
 ## The agent's score
 
-Before asking the person, answer the same three questions yourself, against the
-same scale, and write the score down with one line of reasoning per question.
+Before asking the person, and before any lens runs, answer the same three
+questions yourself from the packet alone, against the same scale, and write the score down with one line of reasoning per question.
 Show it only after the person has given theirs.
 
 - The agent's score never passes or fails anything. Self-scores are not reliable

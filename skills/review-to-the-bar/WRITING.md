@@ -12,11 +12,17 @@ Every comment carries one.
   - a person would be shown something false, or would approve terms they were
     not shown;
   - the behaviour is wrong, or will not work with the other side;
-  - the developer cannot write the sample app, or it is far past one screen;
-  - a claim the change makes is false.
+  - the developer cannot write the sample app, or it is far past one screen,
+    measured on the larger of the minimal snippet and the real caller;
+  - a claim about behaviour or testing, in the description, the commit message
+    or the public documentation, is false or cannot be re-run, and a reviewer
+    would rely on it. A wrong sentence in a code comment is a suggestion.
 
   A shipped path has to reach it: a problem in code nothing can call is a
-  suggestion. Where the repository's rules grade severity, use theirs.
+  suggestion. A call a developer can make through the public API is a path.
+  A stacked PR that fixes a blocking item changes the request ("land #N with
+  this, or first"), not the label; the finding is still stated. Where the
+  repository's rules grade severity, use theirs.
 - **`suggestion (non-blocking)`** — true and worth doing, and the change can
   merge without it.
 - **`question`** — you could neither confirm nor refute it from the code, or the
@@ -44,15 +50,29 @@ A review is read by a busy person. What you post is a selection, not the
 record.
 
 - When the target repository has its own review format or limits, use them.
-- Otherwise: one comment per root cause, and about seven line comments at most.
-  Choose by the order above.
+- Otherwise: one comment per root cause, and about seven line comments. The
+  cap applies after every blocking item has a comment; group those by function
+  when there are many. Documentation fixes share one comment.
 - Everything else that is true goes in an **Also noticed** list for the person
   at hand-over, with the pre-existing problems, what was declined and what was
-  dropped. They decide whether any of it is posted.
-- In someone else's repository, cite their rules, the spec, or the code. Your
-  own project's bar is not an argument there.
+  dropped. They decide whether any of it is sent. When that list is not empty,
+  the body ends with one line giving its count and naming the three most
+  costly.
 - The change you ask for has to satisfy the rule you cite. Check each remedy
   against its rule before you write it down.
+
+## The upstream draft
+
+Only when the person asks to post in someone else's repository. It is a second
+text, made from the review to the author.
+
+- Keep every blocking item whose ground upstream accepts: their rules, the
+  spec, wrong behaviour, or the code's own stated intent.
+- Restate the rest from evidence in their repository: the measurement, the
+  pinned caller's line count, how the repository's own sibling does it. An item
+  that still has no such ground is posted as a suggestion.
+- Cite their rules, the spec, or the code. Your own project's rule files are
+  not cited there.
 
 ## The body, for someone else's change
 
@@ -60,9 +80,10 @@ Short: about 200 to 300 words, plus code.
 
 1. One or two sentences: what the change gets right, and the verdict in plain
    words.
-2. The sample-app measurement: the snippet, its line count, and the code they
-   should be able to write when that differs. For a change that is already
-   right, one sentence.
+2. The sample-app measurement: the snippet, its line count, the real caller's,
+   and the code they should be able to write when that differs. When it is past
+   one screen, say so as the verdict's first sentence and make it the first
+   item of **Before merge**. For a change that is already right, one sentence.
 3. **Before merge**: the blocking items, at most five. Group related ones into
    one item. More than five distinct blockers means the change needs reshaping
    first; say that in place of a longer list.
@@ -71,7 +92,8 @@ Short: about 200 to 300 words, plus code.
    belongs in another PR.
 6. **Not verified**: what was not built or run, and which test outcomes are
    traces, in three lines at most.
-7. Both cold-read scores, when there was a cold read.
+7. Both cold-read scores, when the person has given theirs. A pending cold read
+   and your own score alone stay in the hand-over.
 
 What each lens declined to judge, and what was dropped in validation, go to the
 person at hand-over with the **Also noticed** list. They are not part of what

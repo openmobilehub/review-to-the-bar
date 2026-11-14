@@ -31,7 +31,9 @@ context file, the path to write its report to, and one brief below.
 
 ## Report format
 
-Write the full report to the file you were given, then reply with its path.
+Write the full report to the file you were given: findings first, about 1,500
+words. Its last line is `END OF REPORT`; that line, not your reply, is how the
+orchestrator knows you have finished.
 
 ```
 # <lens> — <repository> PR <number> at <short SHA>
@@ -48,6 +50,7 @@ Write the full report to the file you were given, then reply with its path.
 ## Pre-existing
 ## Declined to judge
 ## Read / not reached
+END OF REPORT
 ```
 
 ## Standards
@@ -65,8 +68,9 @@ too.
 - Public declarations the diff adds or changes: documented, and is any change
   breaking for existing callers? Check what the repository's own rules say about
   compatibility before calling that a defect.
-- Unrelated changes, refactoring mixed with new behaviour, and anything already
-  submitted in another open PR.
+- Unrelated changes, refactoring mixed with new behaviour, the same branch
+  written twice in the files the diff touches, and anything already submitted
+  in another open PR.
 
 ## Spec and correctness
 
@@ -84,6 +88,11 @@ side? With no spec, measure against the PR description and the issue.
   follows and what the other side would do with its output.
 - For anything a person approves: what must be shown before approval, against
   what the diff actually shows (`BAR.md` §2).
+- A test fixture that claims to be the protocol's own example: check it against
+  the protocol's schema.
+- A value the requester supplies and a person approves (a host, a name, an
+  amount): what does the screen show when it is long? Truncation that hides the
+  part that identifies it is a finding.
 
 ## Developer experience
 
@@ -96,7 +105,12 @@ correct them, and note every point of friction as you go.
   to know that the API does not tell them.
 - **First hour:** what happens, and the exact message they see, when they skip a
   step, pass malformed input, call the plausible wrong function, or get a
-  refusal. Does the message say what to do next?
+  refusal. Does the message say what to do next? For each new public function,
+  look for a nearby call of the same type that compiles and gives a worse
+  result.
+- **To the screen:** run the sample in your head as it ships, default settings
+  included. What does a person see? What do they see with each statement of
+  the snippet left out?
 - **Silent failures:** an error swallowed, logged and continued past, or turned
   into a default, where the developer or the user needed to know.
 - **Finding out:** did the docs change with the surface, is there a usage
@@ -129,9 +143,15 @@ For each one that survives:
   here, and would it satisfy the rule the finding cites? If not, write the
   wording that does.
 - Check every sub-claim, not only the headline. One false detail inside a true
-  finding is what the author will answer.
+  finding is what the author will answer. Recount every number. For "this is
+  not signed" or "this is not enforced", cite the code that builds the signed
+  bytes.
 - Is it fair? The repository's existing convention, something a maintainer asked
   for, or out of scope for this PR is not the author's defect.
 - Does the proposed label meet the definition in [`WRITING.md`](WRITING.md)?
+
+Judge labels by the review to the author: every layer of the bar counts, in any
+repository. Read each lens's "Declined to judge"; anything its brief says
+cannot be declined comes back as a nit or a question.
 
 End with what the findings missed, each with its evidence.
