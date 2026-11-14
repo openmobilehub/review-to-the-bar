@@ -9,21 +9,28 @@ down the diff matters as much.
 
 ## What it does
 
-1. **Triage and pin** the pull request to an exact commit.
-2. **Name the three sources**: the repository's rules, the spec, and whatever calls the change.
+1. **Triage and pin** the pull request, and whatever calls it, to exact commits.
+2. **Name the sources**: the repository's rules, the spec, and the callers.
 3. **Measure the sample app first.** It writes the smallest correct code each kind of developer
-   needs and counts the lines. Over one screen, or needing explanation, is the first finding.
-4. **Run the lenses the diff calls for**: standards, spec, developer experience.
-5. **Check the pull request's own claims** ("tested", "verified") against something that can be
+   needs and counts the lines, beside what the real caller wrote. Over one screen, or needing
+   explanation, is the first finding.
+4. **Ask a person for a cold read.** Two or three minutes, three questions, one score from 1 to 5.
+   Below 4, it stops there.
+5. **Run the lenses the change calls for**: standards, spec and correctness, developer experience.
+6. **Check the pull request's own claims** ("tested", "verified") against something that can be
    re-run.
-6. **Validate every finding against the code.** A finding survives only with a quoted line or a
-   command that reproduces it.
-7. **Write the review**, most costly first, each comment labelled as an issue, a suggestion, a
-   question or a nit.
-8. **Hand it to a person.** Nothing is posted without their word.
+7. **Validate every finding against the code**, and every "this is fine" the review relies on. A
+   finding survives only with a quoted line or a command that reproduces it.
+8. **Write the review**: blocking items first, each comment labelled, short enough to read. It
+   ends with a scorecard: six scores from 1 to 5 (developer experience, shown is what is signed,
+   correctness, evidence, scope, repository rules) and an overall score that is the lowest of
+   the first three, never an average.
+9. **Hand it to a person.** Nothing is posted without their word.
+
+It scales to the change: a small fix gets one reviewer and one validator, not a team.
 
 It is read-only. It does not build or run a pull request's code unless you tell it to, and it
-never approves or blocks.
+never approves or merges.
 
 ## Install
 
@@ -127,9 +134,12 @@ To change what it holds a change to, change those files, not the skill.
 
 | Path | What it is |
 | :-- | :-- |
-| `skills/review-to-the-bar/SKILL.md` | The eight steps. |
-| `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
+| `skills/review-to-the-bar/SKILL.md` | The nine steps. |
 | `skills/review-to-the-bar/BAR.md` | The default bar. |
+| `skills/review-to-the-bar/HUMAN-BAR.md` | The cold read: three questions and one score. |
+| `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
+| `skills/review-to-the-bar/WRITING.md` | Labels, order, length, and where each comment goes. |
+| `skills/review-to-the-bar/SCORECARD.md` | The six rubrics and how the overall score is set. |
 | `.claude-plugin/` | The plugin and marketplace manifests. |
 
 ## Where the ideas come from

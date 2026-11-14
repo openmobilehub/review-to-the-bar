@@ -1,12 +1,14 @@
 {
   "name": "review-to-the-bar",
   "description": "The review-to-the-bar skill for Claude Code",
-  "owner": { "name": "Open Mobile Hub" },
+  "owner": {
+    "name": "Open Mobile Hub"
+  },
   "plugins": [
     {
       "name": "review-to-the-bar",
       "source": "./",
-      "description": "Review a pull request before a human reviewer spends time on it: sample app measured first, then standards, spec, developer experience and a skeptic."
+      "description": "Review a pull request before a human reviewer spends time on it: sample app measured first, a two-minute cold read by a person, then standards, spec and correctness, and developer experience, with every finding validated against the code."
     }
   ]
 }
