@@ -121,6 +121,14 @@ is posted.
 
 ## For your own change, before you ask
 
-Fix what you found. Then the top of the PR description carries, in this order:
-the cold-read packet (`HUMAN-BAR.md`), the scorecard, the findings and what you
-did about each, and what you did not verify.
+Fix what you found. Then give your reviewer, in this order: the cold-read
+packet (`HUMAN-BAR.md`), the scorecard, the findings and what you did about
+each, and what you did not verify.
+
+- **In your own team's repository:** at the top of the PR description.
+- **In someone else's repository:** privately, to your own reviewer: a message,
+  or a comment on your team's board card. The PR description there carries
+  only what that repository's template asks for. Scores and the cold-read
+  packet are your team's working notes, not something to publish upstream.
+
+You always see your own scorecard. Who else sees it is your reviewer's call.

@@ -65,5 +65,6 @@ Someone who did not write the change.
   read.
 - **Reviewing your own before you ask:** you are not a cold reader. Prepare the
   cold-read packet (the README section, the sample-app code, the three questions,
-  the scale, and your own score, folded so it is not seen first) and put it at
-  the top of the PR description for the reviewer to do in two minutes.
+  the scale, and your own score, folded so it is not seen first) for the
+  reviewer to do in two minutes. Where it goes is in
+  [`WRITING.md`](WRITING.md), "For your own change".

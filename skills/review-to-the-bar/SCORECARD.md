@@ -32,9 +32,12 @@ part is the problem.
 
 - **4 or above on every gate:** ready for a person's review.
 - **Below 4 on any gate:** goes back, with that rubric's finding first.
+- **Any finding labelled `issue (blocking)`, in any rubric, holds the overall
+  score at 3 or below.** A change with something to fix before merge is not a
+  4, even when the fix is one line.
 
-Evidence, scope and rules are reported beside the overall score and do not
-lower it. They tell the author what to fix next.
+Otherwise evidence, scope and rules are reported beside the overall score and
+do not lower it. They tell the author what to fix next.
 
 ## The cold read
 
