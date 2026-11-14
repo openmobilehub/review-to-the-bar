@@ -153,11 +153,15 @@ wherever the code lives.
 
 8. **Write the review**, following [`WRITING.md`](WRITING.md) for labels, order,
    where each comment goes, and length. For someone else's change: a short body
-   and comments on the changed lines. For your own: fix what you found, then put
+   and comments on the changed lines, ending with the scorecard
+   ([`SCORECARD.md`](SCORECARD.md)): six scores from the validated findings,
+   and an overall score that is the lowest gate. Have one validator check the
+   scores and the labels together before hand-over. For your own: fix what you found, then put
    the cold-read packet, the findings, and what you did not verify at the top
    of the PR description.
 
-9. **Hand it over.** Show the person the review as it would be sent, with
+9. **Hand it over.** Show the person the review as it would be sent, the
+   scorecard first, with
    both cold-read scores, what was not verified, what was declined, and the
    ledger's counts. Send or post only on their word. If they asked for files,
    write the review there.

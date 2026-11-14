@@ -21,7 +21,10 @@ down the diff matters as much.
    re-run.
 7. **Validate every finding against the code**, and every "this is fine" the review relies on. A
    finding survives only with a quoted line or a command that reproduces it.
-8. **Write the review**: blocking items first, each comment labelled, short enough to read.
+8. **Write the review**: blocking items first, each comment labelled, short enough to read. It
+   ends with a scorecard: six scores from 1 to 5 (developer experience, shown is what is signed,
+   correctness, evidence, scope, repository rules) and an overall score that is the lowest of
+   the first three, never an average.
 9. **Hand it to a person.** Nothing is posted without their word.
 
 It scales to the change: a small fix gets one reviewer and one validator, not a team.
@@ -136,6 +139,7 @@ To change what it holds a change to, change those files, not the skill.
 | `skills/review-to-the-bar/HUMAN-BAR.md` | The cold read: three questions and one score. |
 | `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
 | `skills/review-to-the-bar/WRITING.md` | Labels, order, length, and where each comment goes. |
+| `skills/review-to-the-bar/SCORECARD.md` | The six rubrics and how the overall score is set. |
 | `.claude-plugin/` | The plugin and marketplace manifests. |
 
 ## Where the ideas come from

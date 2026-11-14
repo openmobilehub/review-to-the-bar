@@ -99,7 +99,8 @@ Short: about 200 to 300 words, plus code.
    belongs in another PR.
 6. **Not verified**: what was not built or run, and which test outcomes are
    traces, in three lines at most.
-7. Both cold-read scores, when the person has given theirs. A pending cold read
+7. The scorecard ([`SCORECARD.md`](SCORECARD.md)), outside the word count.
+8. Both cold-read scores, when the person has given theirs. A pending cold read
    and your own score alone stay in the hand-over.
 
 What each lens declined to judge, and what was dropped in validation, go to the
@@ -121,5 +122,5 @@ is posted.
 ## For your own change, before you ask
 
 Fix what you found. Then the top of the PR description carries, in this order:
-the cold-read packet (`HUMAN-BAR.md`), the findings and what you did about
-each, and what you did not verify.
+the cold-read packet (`HUMAN-BAR.md`), the scorecard, the findings and what you
+did about each, and what you did not verify.
