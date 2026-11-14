@@ -65,6 +65,53 @@ Two ways to use it:
 - **To check someone else's.** It produces a short review body and comments on the changed lines
   for you to approve, edit or discard.
 
+## The process for one pull request
+
+The skill is one step in a short process. The author does most of the work; the reviewer's part
+is about ten minutes at the start and twenty at the end.
+
+1. **Agree the example before any code.** The author writes the sample-app code for the feature:
+   what a developer would type to use it. The reviewer checks that it fits on one screen and reads
+   clearly. If it does not, the design changes now, while that is cheap. Nothing is built until
+   the reviewer says yes.
+
+2. **Build.** The author builds the feature. A change that grows past the size limit is split
+   into tickets first. On a board, the card stays in *In progress*.
+
+3. **Self-review with the skill.** The author runs `review-to-the-bar` on their own pull request
+   and fixes what it finds. The agent also answers the three cold-read questions below and records
+   its own score.
+
+4. **Prepare the pull request.** The top of the description carries the cold-read packet: the
+   README section, the sample-app code with its line count, and the three questions. Below it:
+   what the skill found, what was fixed, and what was not verified. Only now does the card move to
+   *In review*.
+
+5. **The cold read.** The reviewer reads only the packet, not the diff and not the findings, and
+   answers three questions:
+   - **What is this for?** The use case, in one sentence.
+   - **Is it simple?** A few lines of code.
+   - **Where does it go?** Clear where the code belongs in an app.
+
+   Then one score, 1 to 5, where 5 is "I could add this to an app now without asking anyone" and
+   1 is "I cannot tell what this is for". **4 passes.** Below 4 the reviewer writes a line or two
+   on what was unclear and the change goes back; they read nothing else. This takes two or three
+   minutes, and it is the part no agent can do: an agent reads everything as clear.
+
+6. **Acceptance check.** The reviewer compares their score with the agent's (a wide gap is itself
+   worth a comment), skims the findings and the "not verified" list, and approves or sends back
+   specific items. To spot-check, they run the skill themselves and get a draft review to edit or
+   discard.
+
+7. **Upstream, when the work lands in someone else's repository.** Until now the pull request was
+   a draft, or lived in the team's fork. Once it passes the team's reviewer it goes to the
+   upstream maintainers, who see work that has already cleared the team's bar.
+
+8. **Merge.**
+
+A pull request that reaches *In review* without the packet and the findings in its description
+goes back unopened. That rule is what makes the rest hold.
+
 ## The bar
 
 The skill reads three layers of rules, from the base branch:
