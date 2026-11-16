@@ -79,10 +79,13 @@ Two ways to use it:
 The skill is one step in a short process. The author does most of the work; the reviewer's part
 is about ten minutes at the start and twenty at the end.
 
-1. **Agree the example before any code.** The author writes the sample-app code for the feature:
-   what a developer would type to use it. The reviewer checks that it fits on one screen and reads
-   clearly. If it does not, the design changes now, while that is cheap. Nothing is built until
-   the reviewer says yes.
+1. **Agree the design before any code.** The author writes a one-page design packet, usage
+   first: the sample-app code a developer would type, with its line count, then the public
+   signatures as a stub that compiles, and one alternative shape with why it lost. The reviewer
+   checks that the usage fits on one screen, reads clearly, and has none of the red flags (such as
+   several calls for one job). If it does not, the design changes now, while that is cheap.
+   Nothing is built until the reviewer says yes. The packet and the red flags are in
+   [`DESIGN.md`](skills/review-to-the-bar/DESIGN.md).
 
 2. **Build.** The author builds the feature. A change that grows past the size limit is split
    into tickets first. On a board, the card stays in *In progress*.
@@ -154,6 +157,7 @@ To change what it holds a change to, change those files, not the skill.
 | `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
 | `skills/review-to-the-bar/WRITING.md` | Labels, order, length, and where each comment goes. |
 | `skills/review-to-the-bar/SCORECARD.md` | The six rubrics and how the overall score is set. |
+| `skills/review-to-the-bar/DESIGN.md` | The one-page design packet agreed before code, and the red flags to screen for. |
 | `skills/review-to-the-bar/PROOF.md` | What an author proves, by running their change, before asking for review. |
 | `.claude-plugin/` | The plugin and marketplace manifests. |
 
@@ -180,6 +184,11 @@ Issues and pull requests are welcome. Sign off every commit (`git commit -s`), a
 [Open Mobile Hub](https://openmobilehub.org) repositories. A change to the steps or the briefs
 should say what review it made better: the pull request it was tried on, and what it caught or
 stopped flagging.
+
+## Credits
+
+The evidence ladder, the design packet and its red flags are adapted, in our own words, from
+[pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan (MIT).
 
 ## License
 
