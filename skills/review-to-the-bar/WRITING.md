@@ -122,8 +122,9 @@ is posted.
 ## For your own change, before you ask
 
 Fix what you found. Then give your reviewer, in this order: the cold-read
-packet (`HUMAN-BAR.md`), the scorecard, the findings and what you did about
-each, and what you did not verify.
+packet (`HUMAN-BAR.md`), the scorecard, the proof for each claim
+(`PROOF.md`), the findings and what you did about each, and what you could not
+prove, with the reason.
 
 - **In your own team's repository:** at the top of the PR description.
 - **In someone else's repository:** privately, to your own reviewer: a message,

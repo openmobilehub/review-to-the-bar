@@ -9,8 +9,10 @@ A review that finds what a careful human reviewer would find, before that
 reviewer has to. Read-only throughout: read the code, and run read-only `git`
 and `gh` (`gh pr checks` included). A pull request's checkout is someone else's
 code, so build or run it only when the person you are working for says to, and
-say in the review what you did not run. A person decides what is posted and
-whether the change merges; this skill never approves or merges.
+say in the review what you did not run. Your own change is the exception: you
+build and run it to prove what it claims ([`PROOF.md`](PROOF.md)). A person
+decides what is posted and whether the change merges; this skill never approves
+or merges.
 
 ## Which review this is
 
@@ -130,7 +132,10 @@ wherever the code lives.
    never left to the hand-over. "Fixes #N" is true only when the change does
    what that issue asks for; otherwise ask for "Part of #N". For each new
    control, name the test that fails if that line is removed; when you cannot
-   run it, trace it and say it is a trace.
+   run it, trace it and say it is a trace. When the author handed over proof
+   ([`PROOF.md`](PROOF.md)), check that each piece is for this commit and
+   matches the code; a claim whose proof is missing or does not match is a
+   finding. For your own change, produce the proof now, by running it.
 
 7. **Validate against the code.** First collect: besides each lens's findings,
    its public-surface rows marked "make internal" or "reshape", its "never
@@ -157,8 +162,8 @@ wherever the code lives.
    ([`SCORECARD.md`](SCORECARD.md)): six scores from the validated findings,
    and an overall score that is the lowest gate. Have one validator check the
    scores and the labels together before hand-over. For your own: fix what you found, then give
-   your reviewer the cold-read packet, the scorecard, the findings, and what
-   you did not verify: in the PR description in your own team's repository,
+   your reviewer the cold-read packet, the scorecard, the proof, the findings,
+   and what you did not verify: in the PR description in your own team's repository,
    privately in someone else's.
 
 9. **Hand it over.** Show the person the review as it would be sent, the
