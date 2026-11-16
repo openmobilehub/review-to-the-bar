@@ -6,24 +6,114 @@ which part to fix and the person sees at a glance where the change stands.
 
 ## The six rubrics
 
-Score each from the validated findings only. A score below 5 names the finding
-that set it. Use 2 and 4 for what falls between the anchors.
+Score each one from the validated findings only. A score below 5 names the
+finding that set it.
 
-| Rubric | 5 | 3 | 1 |
-| :-- | :-- | :-- | :-- |
-| **Developer experience** (gate) | The sample app fits one screen and reads without opening the source. | It works, but is past one screen or needs explaining. | Hundreds of lines, or a developer cannot write it. |
-| **Shown is what is signed** (gate) | Every enforced value is visible; anything unreadable is refused. | Right on the normal path; gaps on unusual input. | A person can approve terms they were not shown. |
-| **Correctness and spec** (gate) | Matches the spec and its reference implementation; no bug found. | Right on the main path; bugs at the edges. | Wrong behaviour on a path people will reach. |
-| **Evidence** | Every claim can be re-run; each new check has a test that fails without it. | Tests exist; some claims have nothing behind them. | Claims with no way to check them. |
-| **Scope and size** | One purpose, under about 400 source lines. | One purpose but large, or small with unrelated changes. | Several purposes in one change over 1,000 lines. |
-| **Repository rules** | No breach. | A few minor ones. | Breaks a rule the repository states as a must. |
+- **A finding counts against every rubric it affects.** A prompt that can be
+  approved with no screen lowers both developer experience and shown is what
+  is signed.
+- **n/a means the rubric has nothing to judge.** It is never a 5.
+- **A finding labelled `issue (blocking)` caps each rubric it affects at 2.**
 
-- Measure developer experience on the larger of the minimal snippet and the
-  real caller (`BAR.md` §1).
-- A rubric with nothing to judge is **n/a**, never a 5: "shown is what is
-  signed" when no person approves anything, "developer experience" when no
-  developer writes anything new.
-- A finding labelled `issue (blocking)` caps its rubric at 2.
+### 1. Developer experience (gate)
+
+**Measures:** the code a developer writes to use the change, and whether they
+can get it right without help: the sample app, the docs, the error messages,
+and what happens when a step is skipped.
+**Not:** how the library is built inside.
+**Judged against:** `BAR.md` §1 and §4, and the larger of the minimal snippet
+and what the real caller wrote.
+**n/a when:** no developer writes anything new, as in an internal fix.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | One screen or less, in one place, and a new developer could write it from the docs. Skipping a step is refused with a message that says what to do. |
+| 4 | One screen or less. One thing the docs don't say, or one step that is easy to miss but fails loudly. |
+| 3 | Short, but in several places, or a step can be skipped silently, or it only makes sense after reading the source. |
+| 2 | Past one screen, or the sample app as shipped doesn't work, or a skipped step leads to a wrong result nobody sees. |
+| 1 | Hundreds of lines, or a developer can't write it from what is published. |
+
+### 2. Shown is what is signed (gate)
+
+**Measures:** whether a person approving something sees every term that is
+then signed or enforced, before they approve.
+**Not:** visual design, wording style or translation, unless they hide a term.
+**Judged against:** `BAR.md` §2, and the spec's own rule on what must be shown.
+**n/a when:** no person approves anything.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | Every enforced value is visible, ids as well as names. Anything that can't be shown is refused, never left out. |
+| 4 | Everything is shown on the normal path. One summary simplifies, but says so and links to the full terms. |
+| 3 | Correct on the normal path. Unusual but valid input loses a term, or a summary leaves something out without saying so. |
+| 2 | A reachable path shows something false, or leaves out a term that is enforced. |
+| 1 | A person can approve terms they were never shown, on the normal path. |
+
+### 3. Correctness and spec (gate)
+
+**Measures:** whether the change does what was asked, works with the other
+side, and has no bugs, including security, error handling and bad input.
+**Not:** missing tests (evidence) or style (repository rules).
+**Judged against:** the spec and its reference implementation, the linked
+issue, and otherwise the PR's own description.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | Matches the spec and the reference implementation. No bug found. |
+| 4 | Correct on every path a user reaches. One edge case, unreachable today or failing safely. |
+| 3 | Right on the main path. Bugs on valid but unusual input, or it disagrees with the reference implementation in a way the other side tolerates. |
+| 2 | Wrong on a path people will reach, or the other side rejects its output. |
+| 1 | Wrong on the main path, or unsafe. |
+
+### 4. Evidence
+
+**Measures:** whether the PR's claims can be checked ("tested", "verified",
+"fixes", "works with"), and whether each new check has a test that fails
+without it.
+**Not:** whether the code is right. That is correctness.
+**Judged against:** `BAR.md` §3, and the repository's testing rules.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | Every claim points at a test, script or CI job anyone can run. Each new check has a test that fails when the check is removed. |
+| 4 | Every claim can be re-run. One new check has no test of its own. |
+| 3 | Tests exist, but some claims have nothing behind them, or several checks are untested. |
+| 2 | A claim is false, or a key part has never been run, such as a screen never drawn. |
+| 1 | No claim can be checked. |
+
+### 5. Scope and size
+
+**Measures:** whether the change does one thing, and is small enough to review
+well.
+**Not:** whether the one thing is the right thing. That is correctness.
+**Judged against:** `BAR.md` §5, counting source lines without tests, docs,
+lockfiles or generated files. For a stacked PR, only its own commits.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | One purpose, under about 400 source lines. |
+| 4 | One purpose, up to about 1,000 lines, or small with one unrelated change. |
+| 3 | One purpose over 1,000 lines, or a few unrelated changes mixed in. |
+| 2 | Two or three purposes in one change. |
+| 1 | Several purposes in one change over 1,000 lines. |
+
+### 6. Repository rules
+
+**Measures:** whether the change follows the target repository's written rules
+(its contribution, style, review and agent files) and the pattern its nearest
+sibling code sets.
+**Not:** rules only your own team holds. Those are judged under the rubric they
+belong to, such as the sample-app rule under developer experience.
+**Judged against:** the target repository's rule files, read from the base
+commit.
+
+| Score | Means |
+| :-- | :-- |
+| 5 | No breach. |
+| 4 | One minor breach of a rule the repository itself often ignores. |
+| 3 | A few minor breaches, or one the repository follows consistently. |
+| 2 | Breaks a rule the repository states as "must", or one that affects callers, such as compatibility. |
+| 1 | Several "must" rules broken. |
 
 ## The overall score
 

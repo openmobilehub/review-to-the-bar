@@ -1,6 +1,6 @@
 {
   "name": "review-to-the-bar",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Review a pull request before a human reviewer spends time on it: sample app measured first, a two-minute cold read by a person, then standards, spec and correctness, and developer experience, with every finding validated against the code.",
   "author": {
     "name": "Open Mobile Hub"
