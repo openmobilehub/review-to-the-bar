@@ -71,8 +71,9 @@ Two ways to use it:
 - **Before you ask for review.** Run it on your own pull request, fix what it finds, and give your
   reviewer the cold-read packet, the scorecard, the findings, and what you did not verify (step 4
   below says where).
-- **To check someone else's.** It produces a short review body and comments on the changed lines
-  for you to approve, edit or discard.
+- **To check someone else's.** It produces a short review body, comments on the changed lines,
+  and an appendix with every other true finding, one line each, for you to approve, edit or
+  discard. A draft for someone else's repository carries no appendix.
 
 ## The process for one pull request
 
