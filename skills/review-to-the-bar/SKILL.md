@@ -91,6 +91,9 @@ wherever the code lives.
    one sentence saying so. Beside each minimal snippet, give the number of
    lines the real caller wrote at its pinned commit; when the two differ, the
    larger is what developers will copy. For a fix, measure before and after.
+   On a later round of the same PR, measure the previous round's head too: when
+   the caller's code grew and the developer gained nothing they asked for, that
+   is a finding, and developer experience cannot score 4 on your own change.
    Say the snippets are uncompiled when you could not build. Then trace each
    sample to the screen: as the sample app ships, with its default settings,
    what does a person see, and what happens when each statement of the snippet
@@ -171,4 +174,6 @@ wherever the code lives.
    scorecard first, with
    both cold-read scores, what was not verified, what was declined, and the
    ledger's counts. Send or post only on their word. If they asked for files,
-   write the review there.
+   write the review there. When the person tracks reviews in a project, propose
+   the four tracking numbers ([`SCORECARD.md`](SCORECARD.md), "Tracking across
+   pull requests") and write them on their word.
