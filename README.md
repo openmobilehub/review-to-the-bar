@@ -80,12 +80,11 @@ Two ways to use it:
 The skill is one step in a short process. The author does most of the work; the reviewer's part
 is about ten minutes at the start and twenty at the end.
 
-1. **Agree the design before any code.** The author writes a one-page design packet, usage
-   first: the sample-app code a developer would type, with its line count, then the public
-   signatures as a stub that compiles, and one alternative shape with why it lost. The reviewer
-   checks that the usage fits on one screen, reads clearly, and has none of the red flags (such as
-   several calls for one job). If it does not, the design changes now, while that is cheap.
-   Nothing is built until the reviewer says yes. The packet and the red flags are in
+1. **Agree the usage before any code.** The author shows the reviewer only the developer's view:
+   every line the app writes, including any function it has to supply, where each line goes in a
+   real app, and what the person sees. The reviewer says yes or what to change; nothing is built
+   until the yes. The author's fuller design packet (signatures, an alternative, tradeoffs) goes
+   with the PR for the code review. Both, and the red flags, are in
    [`DESIGN.md`](skills/review-to-the-bar/DESIGN.md).
 
 2. **Build.** The author builds the feature. A change that grows past the size limit is split
@@ -160,7 +159,7 @@ To change what it holds a change to, change those files, not the skill.
 | `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
 | `skills/review-to-the-bar/WRITING.md` | Labels, order, length, and where each comment goes. |
 | `skills/review-to-the-bar/SCORECARD.md` | The six rubrics and how the overall score is set. |
-| `skills/review-to-the-bar/DESIGN.md` | The one-page design packet agreed before code, and the red flags to screen for. |
+| `skills/review-to-the-bar/DESIGN.md` | The usage agreed before code, the author's design packet, and the red flags. |
 | `skills/review-to-the-bar/PROOF.md` | What an author proves, by running their change, before asking for review. |
 | `.claude-plugin/` | The plugin and marketplace manifests. |
 

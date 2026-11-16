@@ -2,8 +2,25 @@
 
 Reference for step 1 of the process in the README, and for the
 developer-experience lens in [`LENSES.md`](LENSES.md). Before building a
-feature, the author agrees its shape with the reviewer on one page. Changing a
-design costs minutes here and days after the code exists.
+feature, the author agrees its usage with the reviewer. Changing a design costs
+minutes here and days after the code exists.
+
+## What the reviewer sees
+
+Only the developer's view, nothing else:
+
+- **Every line the app writes**, as it would sit in a real app, with its line
+  count. A function the app has to supply (a screen, a transport, a callback)
+  is written out too, or counted, never only named.
+- **Where each line goes** in that app: the file or place by name ("once, when
+  the app opens, in the module that creates its services"; "in the handler for
+  incoming `openid4vp://` links").
+- **What the person sees**, in one sentence, when the code runs.
+
+The reviewer says yes, or what to change. Show the changed usage again after
+each change, and build nothing until the yes. The packet below is the author's
+working: it goes with the PR for the code review to check against, and the
+reviewer reads it only if they want to.
 
 ## The packet
 
@@ -25,9 +42,7 @@ One page, in this order. Write the usage first: the shape follows from it.
 5. **Tradeoffs.** One line each: "we accept this in exchange for that".
 6. **Questions for the reviewer.** What the author wants decided, as questions.
 
-The reviewer checks the usage first: one screen, readable, in one place, and
-the steps that must happen together are one call. Nothing is built until they
-agree. The agreed packet goes with the PR, and the review measures the change
+The agreed usage goes at the top of the PR, and the review measures the change
 against it.
 
 ## Red flags
@@ -38,6 +53,13 @@ and a finding when it shows up in a PR.
 - **Several calls for one job.** The caller has to coordinate more than one
   call, or several places, to do one thing, and leaving one out is not refused.
   Make it one call, or have the library refuse when a part is missing.
+- **Everything in one call.** The opposite failure: a call that fetches,
+  checks, asks the person and sends, so the developer cannot see or replace
+  any step. Prefer a few named steps, one line each, in the order they happen,
+  where each step's output can only come from the step before.
+- **Code the docs name but do not show.** The usage calls a function the app
+  must write (`showConsentScreen`, `sendToVerifier`) and the docs only name it.
+  Its lines count; ship a default, or show it.
 - **Options that expose the inside.** Parameters that select internal stages or
   implementation choices the caller should not have to understand.
 - **Two ways to do one thing.** Callers copy whichever they find first, so both
