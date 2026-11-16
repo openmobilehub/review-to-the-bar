@@ -159,3 +159,22 @@ Cold read: pending
   of them at hand-over, and theirs stand.
 - The scorecard goes to the author. It is left out of an upstream draft unless
   the person asks for it there.
+
+## Tracking across pull requests
+
+When the person keeps a tracking project (for example a private GitHub project
+with one number field each), propose these at hand-over and write them only on
+their word, with `gh project item-edit`:
+
+- **Rounds:** the person's reviews on the PR, counted with
+  `gh api repos/<owner>/<repo>/pulls/<n>/reviews`, after this one is posted.
+- **Score:** the overall score, only when the lenses ran. A change stopped at
+  the cold read has no score this round: clear the field rather than keep an
+  older round's.
+- **Cold read gap:** the person's score minus the agent's.
+- **Missed by self-review:** findings in this review that the author's
+  self-review packet does not list. Only when the author sent a packet and the
+  lenses ran; otherwise clear it.
+
+The fields hold the latest round. Read the trend across pull requests: rounds
+falling to 1, scores reaching 4, the gap closing to 0, and missed falling to 0.

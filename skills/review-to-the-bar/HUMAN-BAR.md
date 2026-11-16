@@ -54,6 +54,11 @@ Show it only after the person has given theirs.
 - The **gap** is the finding. When the agent says 4 and the person says 2, the
   agent could not see what is confusing; say so, and treat what the person
   stumbled on as the top item.
+- **A gap of 2 or more** means the agent's clarity judgement is not to be
+  trusted on this change. Say so at hand-over, and on later rounds of the same
+  change rely on the person's read alone. In a sandbox test the agent said 4
+  three rounds in a row while the person went 3, 3, 2 and the caller's code
+  grew each round.
 - Record both scores in the review, so the gap can be tracked from one change to
   the next.
 

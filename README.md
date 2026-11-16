@@ -127,6 +127,8 @@ is about ten minutes at the start and twenty at the end.
    is itself worth a comment), checks the scorecard against the findings, skims the "not verified"
    list, and approves or sends back specific items. They can change any score. To spot-check, they
    run the skill themselves and get a draft review to edit or discard.
+   If they track reviews in a private project, the skill proposes four numbers per pull request
+   (rounds, score, cold-read gap, missed by self-review) and writes them on their word.
 
 7. **Upstream, when the work lands in someone else's repository.** Until now the pull request was
    a draft, or lived in the team's fork. Once it passes the team's reviewer it goes to the
