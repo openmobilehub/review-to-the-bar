@@ -87,13 +87,18 @@ is about ten minutes at the start and twenty at the end.
 2. **Build.** The author builds the feature. A change that grows past the size limit is split
    into tickets first. On a board, the card stays in *In progress*.
 
-3. **Self-review with the skill.** The author runs `review-to-the-bar` on their own pull request
-   and fixes what it finds. The agent also answers the three cold-read questions below and records
-   its own score.
+3. **Self-review and proof.** The author runs `review-to-the-bar` on their own pull request and
+   fixes what it finds. Then they prove each claim the change makes, by building and running it:
+   a screenshot of the sample app as it ships, on every platform it draws on; the sample-app code,
+   compiled and counted; each new check's test, failing with the check removed; a re-runnable
+   script against the other side. Checking happens here, while a fix costs minutes, not after
+   review. What cannot be proved is named, with the reason. The agent also answers the three
+   cold-read questions below and records its own score. The full list is in
+   [`PROOF.md`](skills/review-to-the-bar/PROOF.md).
 
 4. **Hand it to your reviewer.** Send your reviewer the cold-read packet (the README section, the
-   sample-app code with its line count, and the three questions), the scorecard, what the skill
-   found, what you fixed, and what was not verified.
+   sample-app code with its line count, and the three questions), the scorecard, the proof, what
+   the skill found, what you fixed, and what could not be proved.
    - **In your own team's repository:** put all of it at the top of the PR description.
    - **In someone else's repository:** send it privately, as a message or a comment on your
      team's board card. The PR description carries only what that repository's template asks
@@ -125,8 +130,8 @@ is about ten minutes at the start and twenty at the end.
 
 8. **Merge.**
 
-A pull request that reaches *In review* without the packet, the scorecard and the findings
-goes back unopened. That rule is what makes the rest hold.
+A pull request that reaches *In review* without the packet, the scorecard, the proof and the
+findings goes back unopened. That rule is what makes the rest hold.
 
 ## The bar
 
@@ -149,6 +154,7 @@ To change what it holds a change to, change those files, not the skill.
 | `skills/review-to-the-bar/LENSES.md` | The briefs for the reviewers and the validator. |
 | `skills/review-to-the-bar/WRITING.md` | Labels, order, length, and where each comment goes. |
 | `skills/review-to-the-bar/SCORECARD.md` | The six rubrics and how the overall score is set. |
+| `skills/review-to-the-bar/PROOF.md` | What an author proves, by running their change, before asking for review. |
 | `.claude-plugin/` | The plugin and marketplace manifests. |
 
 ## Where the ideas come from
