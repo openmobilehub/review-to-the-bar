@@ -20,9 +20,10 @@ Every comment carries one.
 
   A shipped path has to reach it: a problem in code nothing can call, or that
   no shipped type reaches, is a suggestion. A call a developer can make through
-  the public API is a path. A trace you could not run is a question until a
-  validator confirms it from the code. A doc comment on a declaration is a code
-  comment. Label each finding by itself, also inside a grouped comment.
+  the public API is a path. Blocking needs evidence at level 3 or above on the
+  ladder in [`LENSES.md`](LENSES.md), and a level-3 trace counts only once a
+  validator has walked it again from the code. Below that, it is a question or
+  a suggestion. A doc comment on a declaration is a code comment. Label each finding by itself, also inside a grouped comment.
   A stacked PR that fixes a blocking item changes the request ("land #N with
   this, or first"), not the label; the finding is still stated. Where the
   repository's rules grade severity, use theirs.

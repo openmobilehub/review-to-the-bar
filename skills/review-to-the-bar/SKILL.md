@@ -153,8 +153,9 @@ wherever the code lives.
 
    Keep a **ledger**: every finding, and every point a validator confirmed or
    said was missed, gets exactly one destination: a comment, the body, Also
-   noticed, pre-existing, or dropped with the reason. Your own step 3 traces
-   and each finding's remedy are rows too. Before step 9 the counts add up.
+   noticed, pre-existing, or dropped with the reason, and its evidence level.
+   Your own step 3 traces and each finding's remedy are rows too. Before step 9
+   the counts add up.
 
 8. **Write the review**, following [`WRITING.md`](WRITING.md) for labels, order,
    where each comment goes, and length. For someone else's change: a short body

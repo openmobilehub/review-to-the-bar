@@ -15,8 +15,19 @@ context file, the path to write its report to, and one brief below.
   text it is measured against, quoted with where it comes from, and the exact
   change to make. A claim about behaviour cites the line that shows it, never an
   inference from a name. Few and evidenced beats many.
+- **Say how far the evidence goes.** Every finding, and every "clean", states
+  its level on this ladder, the highest it reached:
+  1. **Said:** stated, with nothing behind it.
+  2. **Located:** the line that shows it is cited.
+  3. **Traced:** the path from an input to the wrong result is walked step by
+     step, each step citing its line.
+  4. **Run:** a test or script against the real code shows it.
+  5. **Reproduced:** it is shown in the running app.
+
+  A reviewer that reads code reaches 3 at most. Levels 4 and 5 come from the
+  author's proof (`PROOF.md`) or from a run the person allowed.
 - **"Clean" is a claim too.** Saying something is fine needs the line that shows
-  it. Without one, list it under what you declined to judge.
+  it, level 2 at least. Without one, list it under what you declined to judge.
 - **Leave these out.** Anything a linter, type checker or CI already enforces. A
   rule the code explicitly silences. A preference a senior engineer would not
   raise. A problem that was there before this change: list those under
@@ -43,6 +54,7 @@ orchestrator knows you have finished.
 - Label proposed: issue (blocking) | suggestion (non-blocking) | question | nit
 - Where: <file>:<line or range>
 - Evidence: <the quoted line, or the read-only command>
+- Level: <1 to 5, from the ladder above>
 - Measured against: <the rule or spec text, quoted, and where it is from>
 - Change: <what to do>
 
@@ -119,6 +131,9 @@ correct them, and note every point of friction as you go.
   check each still works.
 - **Should be:** the code they should be able to write, as concrete signatures,
   and the smallest additive changes that get there.
+- **Shape:** screen the public surface for the red flags in `DESIGN.md`. When a
+  design packet was agreed before the code, measure the change against it: a
+  caller's code that grew past the agreed usage is a finding.
 - **Public surface:** every declaration the diff adds or changes, marked keep,
   make internal, rename (to what), or reshape (how).
 
