@@ -24,7 +24,8 @@ down the diff matters as much.
 8. **Write the review**: blocking items first, each comment labelled, short enough to read. It
    ends with a scorecard: six scores from 1 to 5 (developer experience, shown is what is signed,
    correctness, evidence, scope, repository rules) and an overall score that is the lowest of
-   the first three, never an average.
+   the first three, never an average. What each score means is in
+   [`SCORECARD.md`](skills/review-to-the-bar/SCORECARD.md).
 9. **Hand it to a person.** Nothing is posted without their word.
 
 It scales to the change: a small fix gets one reviewer and one validator, not a team.
@@ -67,8 +68,9 @@ or call it by name with `/review-to-the-bar:review-to-the-bar`.
 
 Two ways to use it:
 
-- **Before you ask for review.** Run it on your own pull request, fix what it finds, and put the
-  sample-app snippet, the findings, and what you did not verify in the description.
+- **Before you ask for review.** Run it on your own pull request, fix what it finds, and give your
+  reviewer the cold-read packet, the scorecard, the findings, and what you did not verify (step 4
+  below says where).
 - **To check someone else's.** It produces a short review body and comments on the changed lines
   for you to approve, edit or discard.
 
@@ -89,9 +91,16 @@ is about ten minutes at the start and twenty at the end.
    and fixes what it finds. The agent also answers the three cold-read questions below and records
    its own score.
 
-4. **Prepare the pull request.** The top of the description carries the cold-read packet: the
-   README section, the sample-app code with its line count, and the three questions. Below it:
-   what the skill found, what was fixed, and what was not verified. Only now does the card move to
+4. **Hand it to your reviewer.** Send your reviewer the cold-read packet (the README section, the
+   sample-app code with its line count, and the three questions), the scorecard, what the skill
+   found, what you fixed, and what was not verified.
+   - **In your own team's repository:** put all of it at the top of the PR description.
+   - **In someone else's repository:** send it privately, as a message or a comment on your
+     team's board card. The PR description carries only what that repository's template asks
+     for. Your scores are your team's working notes.
+
+   Hand it over only when the scorecard is 4 or above on every gate (developer experience, shown
+   is what is signed, correctness) and nothing is blocking. Only then does the card move to
    *In review*.
 
 5. **The cold read.** The reviewer reads only the packet, not the diff and not the findings, and
@@ -105,10 +114,10 @@ is about ten minutes at the start and twenty at the end.
    on what was unclear and the change goes back; they read nothing else. This takes two or three
    minutes, and it is the part no agent can do: an agent reads everything as clear.
 
-6. **Acceptance check.** The reviewer compares their score with the agent's (a wide gap is itself
-   worth a comment), skims the findings and the "not verified" list, and approves or sends back
-   specific items. To spot-check, they run the skill themselves and get a draft review to edit or
-   discard.
+6. **Acceptance check.** The reviewer compares their cold-read score with the agent's (a wide gap
+   is itself worth a comment), checks the scorecard against the findings, skims the "not verified"
+   list, and approves or sends back specific items. They can change any score. To spot-check, they
+   run the skill themselves and get a draft review to edit or discard.
 
 7. **Upstream, when the work lands in someone else's repository.** Until now the pull request was
    a draft, or lived in the team's fork. Once it passes the team's reviewer it goes to the
@@ -116,7 +125,7 @@ is about ten minutes at the start and twenty at the end.
 
 8. **Merge.**
 
-A pull request that reaches *In review* without the packet and the findings in its description
+A pull request that reaches *In review* without the packet, the scorecard and the findings
 goes back unopened. That rule is what makes the rest hold.
 
 ## The bar
