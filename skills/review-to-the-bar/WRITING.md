@@ -58,11 +58,12 @@ record.
   the simplest change that fixes it. Then up to five non-blocking comments,
   the target repository's "must" rules first. Documentation fixes share one
   comment.
-- Everything else that is true goes in an **Also noticed** list for the person
-  at hand-over, with the pre-existing problems, what was declined and what was
-  dropped. They decide whether any of it is sent. When that list is not empty,
-  the body ends with one line giving its count and naming the three most
-  costly.
+- Everything else that is true goes in an **Also noticed** appendix at the end
+  of the review to the author, after the body: one line each, with its label,
+  the file and line, and the change, in the order above. The author fixes the
+  small things in the same pass instead of in a later round. The person sees it
+  at hand-over with the rest of the review and can remove items before it is
+  sent.
 - The change you ask for has to satisfy the rule you cite. Check each remedy
   against its rule before you write it down.
 
@@ -78,6 +79,8 @@ text, made from the review to the author.
   that still has no such ground is posted as a suggestion.
 - Cite their rules, the spec, or the code. Your own project's rule files are
   not cited there.
+- No Also noticed appendix. The limits in "How much to post" are for this
+  reader; an appendix item is posted upstream only on the person's word.
 
 ## The body, for someone else's change
 
@@ -103,10 +106,11 @@ Short: about 200 to 300 words, plus code.
 7. The scorecard ([`SCORECARD.md`](SCORECARD.md)), outside the word count.
 8. Both cold-read scores, when the person has given theirs. A pending cold read
    and your own score alone stay in the hand-over.
+9. The **Also noticed** appendix, outside the word count, when it is not empty.
 
-What each lens declined to judge, and what was dropped in validation, go to the
-person at hand-over with the **Also noticed** list. They are not part of what
-is posted.
+The pre-existing problems, what each lens declined to judge, and what was
+dropped in validation go to the person at hand-over. They are not part of what
+is sent.
 
 ## Where each comment goes
 
