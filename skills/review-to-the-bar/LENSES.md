@@ -132,7 +132,7 @@ correct them, and note every point of friction as you go.
 - **Should be:** the code they should be able to write, as concrete signatures,
   and the smallest additive changes that get there.
 - **Shape:** screen the public surface for the red flags in `DESIGN.md`. When a
-  design packet was agreed before the code, measure the change against it: a
+  usage was agreed before the code, measure the change against it: a
   caller's code that grew past the agreed usage is a finding.
 - **Public surface:** every declaration the diff adds or changes, marked keep,
   make internal, rename (to what), or reshape (how).
