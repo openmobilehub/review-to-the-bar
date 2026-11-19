@@ -99,9 +99,16 @@ is about ten minutes at the start and twenty at the end.
    cold-read questions below and records its own score. The full list is in
    [`PROOF.md`](skills/review-to-the-bar/PROOF.md).
 
-4. **Hand it to your reviewer.** Send your reviewer the cold-read packet (the README section, the
-   sample-app code with its line count, and the three questions), the scorecard, the proof, what
-   the skill found, what you fixed, and what could not be proved.
+4. **Hand it to your reviewer.** Start with the self-review line, so the reviewer knows the skill
+   ran on this commit:
+
+   ```
+   Self-review: review-to-the-bar at <full head SHA>, overall 4, 2 blocking found, 2 fixed.
+   ```
+
+   A link to the full self-review can follow it. Then send the cold-read packet (the README
+   section, the sample-app code with its line count, and the three questions), the scorecard, the
+   proof, what the skill found, what you fixed, and what could not be proved.
    - **In your own team's repository:** put all of it at the top of the PR description.
    - **In someone else's repository:** send it privately, as a message or a comment on your
      team's board card. The PR description carries only what that repository's template asks
@@ -135,8 +142,10 @@ is about ten minutes at the start and twenty at the end.
 
 8. **Merge.**
 
-A pull request that reaches *In review* without the packet, the scorecard, the proof and the
-findings goes back unopened. That rule is what makes the rest hold.
+A pull request that reaches *In review* without the self-review line for its head commit, the
+packet, the scorecard, the proof and the findings goes back unopened. The line is the first thing
+the reviewer checks, and the skill checks it too when it reviews someone else's pull request.
+That rule is what makes the rest hold.
 
 ## The bar
 
