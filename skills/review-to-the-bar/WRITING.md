@@ -126,6 +126,18 @@ is sent.
 
 ## For your own change, before you ask
 
+**The self-review line comes first, every time.** One line, sent with the PR,
+that says you ran this skill, on which commit, and what it found:
+
+```
+Self-review: review-to-the-bar at <full head SHA>, overall 4, 2 blocking found, 2 fixed.
+```
+
+A link to the full self-review can follow it. The commit has to be the head you
+are asking about; push again and you run it again. This line is the minimum:
+without it, your reviewer has no sign the skill ran, and the PR goes back
+unopened. It goes where the rest goes, below.
+
 Fix what you found. Then give your reviewer, in this order: the cold-read
 packet (`HUMAN-BAR.md`), the scorecard, the proof for each claim
 (`PROOF.md`), the findings and what you did about each, and what you could not

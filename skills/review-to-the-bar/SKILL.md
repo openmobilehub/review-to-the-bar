@@ -64,8 +64,14 @@ wherever the code lives.
    description may describe another. A closed PR, or one with no behaviour a
    caller or the other side could observe (a typo, a comment, formatting),
    needs no review: say so and stop. Save the diff, and read whole files by
-   commit SHA.
-   *Done when* the full commit SHA and a non-empty diff are recorded.
+   commit SHA. On someone else's change, look for the author's **self-review
+   line** ([`WRITING.md`](WRITING.md), "For your own change"): in the
+   description, or wherever the person says the author sent it. Record whether
+   it is there and whether its commit is the head. Missing or stale goes first
+   in the hand-over, as "self-review not run on this commit"; the person
+   decides whether to send it back before you go on.
+   *Done when* the full commit SHA, a non-empty diff and the self-review line's
+   state are recorded.
 
 2. **Name the sources.** Each as a path or URL, or stated as missing:
    - **Standards** — the bar above, every layer that exists.
@@ -166,7 +172,7 @@ wherever the code lives.
    ([`SCORECARD.md`](SCORECARD.md)): six scores from the validated findings,
    and an overall score that is the lowest gate. Have one validator check the
    scores and the labels together before hand-over. For your own: fix what you found, then give
-   your reviewer the cold-read packet, the scorecard, the proof, the findings,
+   your reviewer the self-review line, the cold-read packet, the scorecard, the proof, the findings,
    and what you did not verify: in the PR description in your own team's repository,
    privately in someone else's.
 
