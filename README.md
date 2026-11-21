@@ -55,19 +55,35 @@ marketplaces outside the official ones, and a marketplace cannot turn it on for 
 Claude Code checks a few minutes into each session and installs a new version; run
 `/reload-plugins` when it says so, or it loads at your next launch.
 
-A team repository can do this for everyone who opens it, in its `.claude/settings.json`:
+A team repository can offer the plugin to everyone who opens it, with auto-update on, in its
+`.claude/settings.json`. Commit it in the format Claude Code writes, or it rewrites the file on first
+open and leaves an uncommitted change:
 
 ```json
 {
+  "enabledPlugins": {
+    "review-to-the-bar@review-to-the-bar": true
+  },
   "extraKnownMarketplaces": {
     "review-to-the-bar": {
-      "source": { "source": "github", "repo": "openmobilehub/review-to-the-bar" },
+      "source": {
+        "source": "github",
+        "repo": "openmobilehub/review-to-the-bar"
+      },
       "autoUpdate": true
     }
-  },
-  "enabledPlugins": { "review-to-the-bar@review-to-the-bar": true }
+  }
 }
 ```
+
+Each person still installs it once for that repository:
+
+```sh
+claude plugin install review-to-the-bar@review-to-the-bar --scope project
+```
+
+Without that install the plugin is enabled but not recorded as installed, so auto-update has
+nothing to update: after the next release it stops loading (Claude Code 2.1.301).
 
 To update by hand:
 
