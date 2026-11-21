@@ -49,7 +49,27 @@ claude plugin marketplace add openmobilehub/review-to-the-bar
 claude plugin install review-to-the-bar@review-to-the-bar --scope user
 ```
 
-To update later:
+Turn on auto-update once, so you get each new version without being told: run `/plugin`, open
+**Marketplaces**, select **review-to-the-bar** and turn auto-update on. Claude Code leaves it off for
+marketplaces outside the official ones, and a marketplace cannot turn it on for you. After that,
+Claude Code checks a few minutes into each session and installs a new version; run
+`/reload-plugins` when it says so, or it loads at your next launch.
+
+A team repository can do this for everyone who opens it, in its `.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "review-to-the-bar": {
+      "source": { "source": "github", "repo": "openmobilehub/review-to-the-bar" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": { "review-to-the-bar@review-to-the-bar": true }
+}
+```
+
+To update by hand:
 
 ```sh
 claude plugin marketplace update review-to-the-bar
